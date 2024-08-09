@@ -22,7 +22,7 @@ const WorkoutList = () => {
         console.error("Error fetching workouts:", error);
       } finally {
         setLoading(false);
-      }
+      } 
     };
     fetchWorkouts();
   }, []);

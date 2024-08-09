@@ -22,7 +22,7 @@ const UserList = () => {
         console.error("Error fetching users:", error);
       } finally {
         setLoading(false);
-      }
+      } 
     };
     fetchUsers();
   }, []);

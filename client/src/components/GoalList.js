@@ -22,7 +22,7 @@ const GoalList = () => {
         console.error("Error fetching goals:", error);
       } finally {
         setLoading(false);
-      }
+      } 
     };
     fetchGoals();
   }, []);

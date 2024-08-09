@@ -1,4 +1,9 @@
 /* General container styling */
+body {
+  background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR18pLTPaWaIaJeQtVOAQ0eUpQ_caHVsGEQlnmKKlMPeXdpMUMHrCg3cynd330R17Fb5sc&usqp=CAU); 
+  background-size: cover;
+}
+
 .user-list-container {
     max-width: 800px;
     margin: 20px auto;

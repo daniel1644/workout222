@@ -9,6 +9,7 @@ import WorkoutList from './components/WorkoutList';
 import WorkoutDetail from './components/WorkoutDetail';
 import GoalList from './components/GoalList';
 import GoalDetail from './components/GoalDetail';
+import AboutUs from './components/AboutUs';
 
 const App = () => (
   
@@ -24,6 +25,7 @@ const App = () => (
         <Route path="/workouts/:workoutId" component={WorkoutDetail} />
         <Route exact path="/goals" component={GoalList} />
         <Route path="/goals/:goalId" component={GoalDetail} />
+        <Route path="/about-us" component={AboutUs} />
       </Switch>
    </>
  
