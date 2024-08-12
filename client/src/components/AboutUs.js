@@ -1,10 +1,14 @@
 // AboutUs.js
 import React from 'react';
 import './AboutUs.css';
+import Navbar2 from './Navbar2';
 
 const AboutUs = () => {
   return (
-    <div className="about-us">
+    <div>
+     <Navbar2/>
+
+      <div className="about-us">
       <h1>About Us</h1>
       <p>Welcome to our fitness app!</p>
       <p>We are a team of fitness enthusiasts dedicated to helping you reach your goals.</p>
@@ -15,6 +19,9 @@ const AboutUs = () => {
         <img src="https://i.ytimg.com/vi/wgglFeTL0lU/hqdefault.jpg" alt="Running group" />
       </div>
     </div>
+
+    </div>
+
   );
 };
 

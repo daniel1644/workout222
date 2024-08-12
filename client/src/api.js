@@ -137,3 +137,17 @@ export const registerUser = async (credentials) => {
   if (!response.ok) throw new Error('Registration failed');
   return response.json();
 };
+
+
+export const logoutUser = async () => {
+  try {
+    const response = await fetch(`${API_URL}/logout`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+    });
+    if (!response.ok) throw new Error('Logout failed');
+    return response.json();
+  } catch (error) {
+    throw error;
+  }
+};

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useHistory, useParams } from 'react-router-dom';
 import { getWorkouts, deleteWorkout, addWorkout, getWorkout, updateWorkout } from '../api';
 import './WorkoutList.css';
+import Navbar2 from './Navbar2';
 
 const WorkoutList = () => {
   const history = useHistory();
@@ -63,8 +64,10 @@ const WorkoutList = () => {
 
   return (
     <div className="workout-list-container">
+         <Navbar2/>
       <h2 className="workout-list-header">Workout List</h2>
       <Link to="/workouts/add">Add Workout</Link>
+   
       <form onSubmit={handleSubmit}>
         <label>
           Date:

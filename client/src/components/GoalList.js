@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useHistory, useParams } from 'react-router-dom';
 import { getGoals, addGoal, updateGoal, deleteGoal, getGoal } from '../api';
 import './GoalList.css';
+import Navbar2 from './Navbar2';
 
 
 const GoalList = () => {
@@ -62,8 +63,10 @@ const GoalList = () => {
 
   return (
     <div className="goal-list-container">
+      <Navbar2/>
       <h2 className="goal-list-header">Goal List</h2>
       <Link to="/goals/add">Add Goal</Link>
+      
       <form onSubmit={handleSubmit}>
         <label>
           Description:

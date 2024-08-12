@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useHistory, useParams } from 'react-router-dom';
 import { getUsers, deleteUser, addUser, getUser, updateUser } from '../api';
 import './UserList.css';
+import Navbar2 from './Navbar2';
 
 const UserList = () => {
   const history = useHistory();
@@ -62,8 +63,10 @@ const UserList = () => {
 
   return (
     <div className="user-list-container">
+       <Navbar2/>
       <h2 className="user-list-header">User List</h2>
       <Link to="/users/add">Add User</Link>
+     
       <form onSubmit={handleSubmit}>
         <label>
           Username:
