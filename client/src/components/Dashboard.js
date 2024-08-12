@@ -80,6 +80,13 @@ const Dashboard = () => {
             )}
           </ul>
         </div>
+        <div className="image-gallery">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_z2mmMJwzSplR9KDarPj6jx6dA-PRJNhvs7CMR-5u4huKqDWJQD9PmadVB7-5n8bqgHk&usqp=CAU" alt="Image 1" />
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPjfM0zk3G8TrOgGZS28wZWIBz4oKVtjntPwUVa2pZbshXrksyftsbjbEK-NoPNEOSbEs&usqp=CAU" alt="Image 2" />
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGKmjTsDMEHh7X6xXb2aS8WQb5d5r6-8T6tbJZxNu4Y5uRQPUe-sUlsER4TCigx4-ukM4&usqp=CAU" alt="Image 3" />
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTthI5daXz7tiLV0wf-fxAwGvW8LDnPeyzsLQZq7Y0wCHkwTz-8bfpKjz3wAm5A5I9kRVY&usqp=CAU" alt="Image 4" />
+          <img src="https://is5-ssl.mzstatic.com/image/thumb/Purple128/v4/c2/51/5a/c2515a28-2afc-4ea0-a958-ae2d058805bd/source/256x256bb.jpg" alt="Image 5" />
+        </div>
       </div>
     </div>
   );

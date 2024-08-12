@@ -6,7 +6,7 @@ import pic4 from '../4.png';
 import './home.css';
 import { loginUser, registerUser } from '../api'; // Ensure you have these functions in your api.js
 import Footer from './Footer';
-// import Notice from './Notice'; 
+
 
 
 const Home = () => {
@@ -90,7 +90,6 @@ const Home = () => {
         <img src={pic3} alt="" className="img-fluid" />
         <img src={pic4} alt="" className="img-fluid" />
       </div>
-      {/* <Notice /> */}
 
       <Footer /> 
 
