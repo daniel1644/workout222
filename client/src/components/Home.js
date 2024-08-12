@@ -5,7 +5,7 @@ import pic3 from '../2.png';
 import pic4 from '../4.png';
 import './home.css';
 import { loginUser, registerUser } from '../api'; // Ensure you have these functions in your api.js
-// import Footer from './Footer';
+import Footer from './Footer';
 // import Notice from './Notice'; 
 
 
@@ -33,6 +33,7 @@ const Home = () => {
 
   return (
     <div>
+
       <div className="auth-container">
         <h2>{isLogin ? 'Login' : 'Register'}</h2>
         <form onSubmit={handleSubmit}>
@@ -58,6 +59,7 @@ const Home = () => {
               onChange={(e) => setEmail(e.target.value)}
               required
             />
+
           )}
           <button type="submit">{isLogin ? 'Login' : 'Register'}</button>
         </form>
@@ -66,6 +68,7 @@ const Home = () => {
         </p>
         {message && <p className="message">{message}</p>}
       </div>
+
 
       <h1>
       <div className="slider__item">
@@ -80,6 +83,7 @@ const Home = () => {
       </div>
     </div>
       =</h1>
+
       <div className="image-gallery">
         <img src={pic1} alt="" className="img-fluid" />
         <img src={pic2} alt="" className="img-fluid" />
@@ -88,7 +92,7 @@ const Home = () => {
       </div>
       {/* <Notice /> */}
 
-      {/* <Footer />  */}
+      <Footer /> 
 
     </div>
   );
