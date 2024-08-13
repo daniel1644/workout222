@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { getUser, deleteUser } from '../api';
+import './styles.css';
+import './styles2.css';
 
 const UserDetail = () => {
   const location = useLocation();
@@ -27,7 +29,7 @@ const UserDetail = () => {
   if (!user) return <div>Loading...</div>;
 
   return (
-    <div>
+    <div className="bg_user">
       <h2>User Details</h2>
       <p>ID: {user.id}</p>
       <p>Username: {user.username}</p>

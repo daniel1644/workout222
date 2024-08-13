@@ -5,7 +5,6 @@ import './Navbar.css';
 const Navbar2 = () => (
   <nav>
     <ul>
-      
       <li>
         <Link to="/dashboard">Dashboard</Link>
       </li>
@@ -21,8 +20,6 @@ const Navbar2 = () => (
       <li>
         <Link to="/about-us">About Us</Link>
       </li>
-      
-      
     </ul>
   </nav>
 );

@@ -2,7 +2,7 @@ import React from 'react';
 import {  Route, Switch } from 'react-router-dom';
 import Home from './components/Home';
 import Navbar from './components/Navbar';
-import Navbar2 from './components/Navbar2';
+// import Navbar2 from './components/Navbar2';
 import Dashboard from './components/Dashboard';
 import UserList from './components/UserList';
 import UserDetail from './components/UserDetail';

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getWorkout, deleteWorkout } from '../api';
+import './styles.css';
+import './styles.css';
 
 const WorkoutDetail = () => {
   const { workoutId } = useParams();
@@ -22,7 +24,7 @@ const WorkoutDetail = () => {
   if (!workout) return <div>Loading...</div>;
 
   return (
-    <div>
+    <div className="bg_user">
       <h2>Workout Details</h2>
       <p>ID: {workout.id}</p>
       <p>Date: {workout.date}</p>

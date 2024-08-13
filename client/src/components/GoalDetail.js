@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getGoal, deleteGoal } from '../api';
+import './styles.css';
+import './styles.css';
 
 const GoalDetail = () => {
   const { goalId } = useParams();
@@ -22,7 +24,7 @@ const GoalDetail = () => {
   if (!goal) return <div>Loading...</div>;
 
   return (
-    <div>
+    <div className="bg_user">
       <h2>Goal Details</h2>
       <p>ID: {goal.id}</p>
       <p>Description: {goal.description}</p>

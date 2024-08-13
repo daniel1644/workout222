@@ -5,7 +5,6 @@ import './GoalList.css';
 import Navbar2 from './Navbar2';
 import Logout from './Logout';
 
-
 const GoalList = () => {
   const history = useHistory();
   const { id } = useParams();
@@ -14,6 +13,7 @@ const GoalList = () => {
   const [description, setDescription] = useState('');
   const [targetDate, setTargetDate] = useState('');
   const [isEditing, setIsEditing] = useState(false);
+  const [selectedGoalId, setSelectedGoalId] = useState(null);
 
   useEffect(() => {
     const fetchGoals = async () => {
@@ -43,11 +43,21 @@ const GoalList = () => {
 
   const handleViewGoal = (id) => {
     history.push(`/goals/${id}`);
+    setSelectedGoalId(id);
   };
 
-  const handleDeleteGoal = async (id) => {
-    await deleteGoal(id);
-    setGoals(goals.filter(goal => goal.id !== id));
+  const handleDeleteGoal = async () => {
+    if (selectedGoalId) {
+      await deleteGoal(selectedGoalId);
+      setGoals(goals.filter(goal => goal.id !== selectedGoalId));
+      setSelectedGoalId(null);
+    }
+  };
+
+  const handleEditGoal = () => {
+    if (selectedGoalId) {
+      history.push(`/goals/edit/${selectedGoalId}`);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -66,39 +76,42 @@ const GoalList = () => {
     <div>
       <Navbar2/>
 
-    <div className="goal-list-container">
-      <Logout />
-      <h2 className="goal-list-header">Goal List</h2>
-      <Link to="/goals/add">Add Goal</Link>
-      
-      <form onSubmit={handleSubmit}>
-        <label>
-          Description:
-          <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
-        </label>
-        <br />
-        <label>
-          Target Date:
-          <input type="date" value={targetDate} onChange={(e) => setTargetDate(e.target.value)} />
-        </label>
-        <br />
-        <button type="submit">{isEditing ? 'Save Changes' : 'Add Goal'}</button>
-      </form>
-      <ul className="goal-list">
-        {goals.map((goal) => (
-          <li key={goal.id} className="goal-item">
-            <h1>{goal.description}</h1>
-            <p className="target-date">Target Date: {goal.target_date}</p>
-            <button onClick={() => handleViewGoal(goal.id)}>View Goal</button>
-            <Link to={`/goals/edit/${goal.id}`}>Edit</Link>
-            <button onClick={() => handleDeleteGoal(goal.id)}>Delete</button>
-          </li>
-        ))}
-      </ul>
-     
+      <div className="goal-list-container">
+        <Logout />
+        <h2 className="goal-list-header">Goal List</h2>
+        <Link to="/goals/add">Add Goal</Link>
+        
+        <form onSubmit={handleSubmit}>
+          <label>
+            Description:
+            <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
+          </label>
+          <br />
+          <label>
+            Target Date:
+            <input type="date" value={targetDate} onChange={(e) => setTargetDate(e.target.value)} />
+          </label>
+          <br />
+          <button type="submit">{isEditing ? 'Save Changes' : 'Add Goal'}</button>
+        </form>
+        <ul className="goal-list">
+          {goals.map((goal) => (
+            <li key={goal.id} className="goal-item">
+              <h1>{goal.description}</h1>
+              <p className="target-date">Target Date: {goal.target_date}</p>
+              <button onClick={() => handleViewGoal(goal.id)}>View Goal</button>
+              {selectedGoalId === goal.id && (
+                <>
+                  <Link to={`/goals/edit/${goal.id}`}>Edit</Link>
+                  <button onClick={handleDeleteGoal}>Delete</button>
+                </>
+              )}
+            </li>
+          ))}
+        </ul>
+       
+      </div>
     </div>
-    </div>
-    
   );
 };
 

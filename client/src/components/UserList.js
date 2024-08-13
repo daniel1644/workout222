@@ -14,6 +14,7 @@ const UserList = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isEditing, setIsEditing] = useState(false);
+  const [currentUser, setCurrentUser] = useState({});
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -39,6 +40,14 @@ const UserList = () => {
       fetchUser();
       setIsEditing(true);
     }
+  }, [id]);
+
+  useEffect(() => {
+    const fetchCurrentUser = async () => {
+      const data = await getUser(id); // assuming id is the current user's id
+      setCurrentUser(data);
+    };
+    fetchCurrentUser();
   }, [id]);
 
   const handleViewProfile = (id) => {
@@ -94,8 +103,12 @@ const UserList = () => {
           <li key={user.id} className="user-item">
             <h1>{user.username}</h1>
             <button onClick={() => handleViewProfile(user.id)}>View Profile</button>
-            <Link to={`/users/edit/${user.id}`}>Edit</Link>
-            <button onClick={() => handleDeleteUser(user.id)}>Delete</button>
+            {currentUser.id === user.id && (
+              <>
+                <Link to={`/users/edit/${user.id}`}>Edit</Link>
+                <button onClick={() => handleDeleteUser(user.id)}>Delete</button>
+              </>
+            )}
           </li>
         ))}
       </ul>
