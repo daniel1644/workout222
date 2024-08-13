@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link, useHistory, useParams } from 'react-router-dom';
 import { getUsers, deleteUser, addUser, getUser, updateUser } from '../api';
 import './UserList.css';
+import Navbar2 from './Navbar2';
+import Logout from './Logout';
 
 const UserList = () => {
   const history = useHistory();
@@ -12,6 +14,7 @@ const UserList = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isEditing, setIsEditing] = useState(false);
+  const [currentUser, setCurrentUser] = useState({});
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -39,6 +42,14 @@ const UserList = () => {
     }
   }, [id]);
 
+  useEffect(() => {
+    const fetchCurrentUser = async () => {
+      const data = await getUser(id); // assuming id is the current user's id
+      setCurrentUser(data);
+    };
+    fetchCurrentUser();
+  }, [id]);
+
   const handleViewProfile = (id) => {
     history.push(`/users/${id}`);
   };
@@ -61,9 +72,14 @@ const UserList = () => {
   if (loading) return <div>Loading...</div>;
 
   return (
-    <div className="user-list-container">
+    <div>
+           <Navbar2/>
+          <div className="user-list-container">
+  
+       <Logout />
       <h2 className="user-list-header">User List</h2>
       <Link to="/users/add">Add User</Link>
+     
       <form onSubmit={handleSubmit}>
         <label>
           Username:
@@ -87,13 +103,19 @@ const UserList = () => {
           <li key={user.id} className="user-item">
             <h1>{user.username}</h1>
             <button onClick={() => handleViewProfile(user.id)}>View Profile</button>
-            <Link to={`/users/edit/${user.id}`}>Edit</Link>
-            <button onClick={() => handleDeleteUser(user.id)}>Delete</button>
+            {currentUser.id === user.id && (
+              <>
+                <Link to={`/users/edit/${user.id}`}>Edit</Link>
+                <button onClick={() => handleDeleteUser(user.id)}>Delete</button>
+              </>
+            )}
           </li>
         ))}
       </ul>
       
     </div>
+    </div>
+
   );
 };
 

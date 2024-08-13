@@ -38,6 +38,8 @@ export const deleteUser = async (id) => {
   await fetch(`${API_URL}/users/${id}`, { method: 'DELETE' });
 };
 
+
+
 // Workout API
 export const getWorkouts = async () => {
   const response = await fetch(`${API_URL}/workouts`);
@@ -52,13 +54,21 @@ export const getWorkout = async (id) => {
 };
 
 export const addWorkout = async (workout) => {
-  const response = await fetch(`${API_URL}/workouts`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(workout),
-  });
-  const data = await response.json();
-  return data;
+  try {
+    const response = await fetch(`${API_URL}/workouts`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(workout),
+    });
+    if (!response.ok) {
+      throw new Error(`Error adding workout: ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error adding workout:', error);
+    throw error;
+  }
 };
 
 export const updateWorkout = async (id, workout) => {
@@ -136,4 +146,21 @@ export const registerUser = async (credentials) => {
   });
   if (!response.ok) throw new Error('Registration failed');
   return response.json();
+};
+
+
+
+export const logoutUser = async () => {
+  try {
+    const response = await fetch(`${API_URL}/logout`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    });
+    localStorage.removeItem('token');
+    return response.json();
+  } catch (error) {
+    console.error(error);
+  }
 };

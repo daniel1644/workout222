@@ -1,16 +1,17 @@
-# app.py
-from flask import request, make_response, jsonify
+from flask import request, make_response, jsonify, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_restful import Resource, Api
 from flask_bcrypt import Bcrypt
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
+from flask_session import Session
 from datetime import timedelta
 from config import app, db, api
 from models import User, Workout, Goal
 
-# Initialize Bcrypt and JWT Manager
+# Initialize Bcrypt, JWT Manager, and Session
 bcrypt = Bcrypt(app)
 jwt = JWTManager(app)
+Session(app)  # Initialize Flask-Session
 
 # Define routes
 @app.route('/')
@@ -43,7 +44,18 @@ def login():
     if not user or not user.check_password(password):
         return make_response(jsonify({'error': 'Invalid username or password'}), 401)
     access_token = create_access_token(identity=user.id, expires_delta=timedelta(hours=1))
-    return make_response(jsonify({'access_token': access_token}), 200)
+    response = make_response(jsonify({'access_token': access_token}), 200)
+    # Store the access token in a session cookie
+    session['access_token'] = access_token
+    return response
+
+# User logout endpoint
+@app.route('/logout', methods=['POST'])
+@jwt_required()
+def logout():
+    # Remove the access token from session
+    session.pop('access_token', None)
+    return jsonify({'message': 'Logged out successfully'}), 200
 
 # Protected route example
 @app.route('/protected', methods=['GET'])
@@ -52,8 +64,6 @@ def protected():
     current_user_id = get_jwt_identity()
     user = User.query.get(current_user_id)
     return jsonify(logged_in_as=user.username), 200
-
-
 
 # User resources
 class UserList(Resource):

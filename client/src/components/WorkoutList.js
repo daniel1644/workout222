@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link, useHistory, useParams } from 'react-router-dom';
 import { getWorkouts, deleteWorkout, addWorkout, getWorkout, updateWorkout } from '../api';
 import './WorkoutList.css';
+import Navbar2 from './Navbar2';
+import Logout from './Logout';
 
 const WorkoutList = () => {
   const history = useHistory();
@@ -12,6 +14,7 @@ const WorkoutList = () => {
   const [type, setType] = useState('');
   const [duration, setDuration] = useState('');
   const [isEditing, setIsEditing] = useState(false);
+  const [currentWorkoutId, setCurrentWorkoutId] = useState(null);
 
   useEffect(() => {
     const fetchWorkouts = async () => {
@@ -34,9 +37,10 @@ const WorkoutList = () => {
         setDate(data.date);
         setType(data.type);
         setDuration(data.duration);
+        setCurrentWorkoutId(id);
+        setIsEditing(true);
       };
       fetchWorkout();
-      setIsEditing(true);
     }
   }, [id]);
 
@@ -45,16 +49,26 @@ const WorkoutList = () => {
   };
 
   const handleDeleteWorkout = async (id) => {
-    await deleteWorkout(id);
-    setWorkouts(workouts.filter(workout => workout.id !== id));
+    if (id === currentWorkoutId) {
+      await deleteWorkout(id);
+      setWorkouts(workouts.filter(workout => workout.id !== id));
+      history.push('/workouts');
+    }
+  };
+
+  const handleEditWorkout = (id) => {
+    if (id === currentWorkoutId) {
+      setIsEditing(true);
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (isEditing) {
-      await updateWorkout(id, { date, type, duration });
+      await updateWorkout(currentWorkoutId, { date, type, duration });
     } else {
-      await addWorkout({ date, type, duration });
+      const newWorkout = await addWorkout({ date, type, duration });
+      setWorkouts([...workouts, newWorkout]);
     }
     history.push('/workouts');
   };
@@ -62,9 +76,14 @@ const WorkoutList = () => {
   if (loading) return <div>Loading...</div>;
 
   return (
-    <div className="workout-list-container">
+    <div>
+      <Navbar2/>
+
+      <div className="workout-list-container">
+         <Logout />
       <h2 className="workout-list-header">Workout List</h2>
       <Link to="/workouts/add">Add Workout</Link>
+   
       <form onSubmit={handleSubmit}>
         <label>
           Date:
@@ -88,13 +107,19 @@ const WorkoutList = () => {
           <li key={workout.id} className="workout-item">
             <h1>{workout.date} - {workout.type} ({workout.duration} mins)</h1>
             <button onClick={() => handleViewWorkout(workout.id)}>View Workout</button>
-            <Link to={`/workouts/edit/${workout.id}`}>Edit</Link>
-            <button onClick={() => handleDeleteWorkout(workout.id)}>Delete</button>
+            {currentWorkoutId === workout.id && (
+              <React.Fragment>
+                <button onClick={() => handleEditWorkout(workout.id)}>Edit</button>
+                <button onClick={() => handleDeleteWorkout(workout.id)}>Delete</button>
+              </React.Fragment>
+            )}
           </li>
         ))}
       </ul>
      
     </div>
+    </div>
+    
   );
 };
 

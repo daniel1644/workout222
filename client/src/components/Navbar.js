@@ -9,20 +9,10 @@ const Navbar = () => (
         <Link to="/">Home</Link>
       </li>
       <li>
-        <Link to="/dashboard">Dashboard</Link>
+        <Link to="/login">Login</Link>
       </li>
-      <li>
-        <Link to="/users">Users</Link>
-      </li>
-      <li>
-        <Link to="/workouts">Workouts</Link>
-      </li>
-      <li>
-        <Link to="/goals">Goals</Link>
-      </li>
-      <li>
-        <Link to="/about-us">About Us</Link>
-      </li>
+    
+      
     </ul>
   </nav>
 );
