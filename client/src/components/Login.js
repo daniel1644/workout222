@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { loginUser, registerUser } from '../api'; 
+import { useHistory} from 'react-router-dom'
 import Navbar2 from './Navbar2';
-import Dashboard from './Dashboard';
-import UserList from './UserList';
-import WorkoutList from './WorkoutList';
-import Goal from './GoalList';
+
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -13,6 +11,7 @@ const Login = () => {
   const [isLogin, setIsLogin] = useState(true); 
   const [message, setMessage] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const history = useHistory()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,6 +20,8 @@ const Login = () => {
         await loginUser({ username, password });
         setMessage('Login successful!');
         setIsLoggedIn(true);
+        history.push("/dashboard")
+        
       } else {
         await registerUser({ username, password, email });
         setMessage('Registration successful!');
@@ -36,11 +37,9 @@ const Login = () => {
       {isLoggedIn ? (
         <div>
           <Navbar2 />
+          
           <div className="content">
-            <Dashboard />
-            <UserList /> 
-            <WorkoutList />
-            <Goal /> 
+           
           </div>
         </div>
       ) : (

@@ -53,6 +53,20 @@ def protected():
     user = User.query.get(current_user_id)
     return jsonify(logged_in_as=user.username), 200
 
+@app.route('/logout', methods=['POST'])
+@jwt_required
+def logout():
+    jti = get_jwt_identity()
+    blacklist_token(jti)
+    return jsonify({'message': 'Logged out successfully'}), 200
+
+def blacklist_token(jti):
+    # Store the blacklisted token in a database or cache
+    # For this example, we'll use a simple in-memory set
+    blacklisted_tokens = set()
+    blacklisted_tokens.add(jti)
+    return True
+
 
 
 # User resources

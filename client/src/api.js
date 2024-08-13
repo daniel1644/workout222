@@ -139,15 +139,18 @@ export const registerUser = async (credentials) => {
 };
 
 
+
 export const logoutUser = async () => {
   try {
     const response = await fetch(`${API_URL}/logout`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
     });
-    if (!response.ok) throw new Error('Logout failed');
+    localStorage.removeItem('token');
     return response.json();
   } catch (error) {
-    throw error;
+    console.error(error);
   }
 };

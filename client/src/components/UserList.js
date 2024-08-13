@@ -3,6 +3,7 @@ import { Link, useHistory, useParams } from 'react-router-dom';
 import { getUsers, deleteUser, addUser, getUser, updateUser } from '../api';
 import './UserList.css';
 import Navbar2 from './Navbar2';
+import Logout from './Logout';
 
 const UserList = () => {
   const history = useHistory();
@@ -62,8 +63,11 @@ const UserList = () => {
   if (loading) return <div>Loading...</div>;
 
   return (
-    <div className="user-list-container">
-       <Navbar2/>
+    <div>
+           <Navbar2/>
+          <div className="user-list-container">
+  
+       <Logout />
       <h2 className="user-list-header">User List</h2>
       <Link to="/users/add">Add User</Link>
      
@@ -97,6 +101,8 @@ const UserList = () => {
       </ul>
       
     </div>
+    </div>
+
   );
 };
 

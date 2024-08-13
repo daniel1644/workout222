@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getUsers, getWorkouts, getGoals } from '../api'; 
 import './Dashboard.css'; 
 import Navbar2 from './Navbar2';
+import Logout from './Logout';
 
 const Dashboard = () => {
   const [users, setUsers] = useState([]);
@@ -39,6 +40,7 @@ const Dashboard = () => {
     
     <div className="dashboard__container">
       <Navbar2/>
+      <Logout />
       <h2>Dashboard</h2>
       <div className="dashboard__grid">
         <div className="widget">

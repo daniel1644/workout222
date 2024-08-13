@@ -4,15 +4,14 @@ import pic2 from '../1.png';
 import pic3 from '../2.png';
 import pic4 from '../4.png';
 import './home.css';
-import Navbar  from './Navbar';
-// import Login from './Login';
+import HeroSlider from './HeroSlider';
 import Footer from './Footer';
 
 const Home = () => {
   return (
     <div>
 
-      {/* <Login /> */}
+      
       <h1>
         <div className="slider__item">
           <div className="slider__content">
@@ -33,7 +32,8 @@ const Home = () => {
         <img src={pic3} alt="" className="img-fluid" />
         <img src={pic4} alt="" className="img-fluid" />
       </div>
-
+      <HeroSlider /> 
+    
       <Footer /> 
     </div>
   );

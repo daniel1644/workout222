@@ -3,6 +3,7 @@ import { Link, useHistory, useParams } from 'react-router-dom';
 import { getWorkouts, deleteWorkout, addWorkout, getWorkout, updateWorkout } from '../api';
 import './WorkoutList.css';
 import Navbar2 from './Navbar2';
+import Logout from './Logout';
 
 const WorkoutList = () => {
   const history = useHistory();
@@ -63,8 +64,11 @@ const WorkoutList = () => {
   if (loading) return <div>Loading...</div>;
 
   return (
-    <div className="workout-list-container">
-         <Navbar2/>
+    <div>
+      <Navbar2/>
+
+      <div className="workout-list-container">
+         <Logout />
       <h2 className="workout-list-header">Workout List</h2>
       <Link to="/workouts/add">Add Workout</Link>
    
@@ -98,6 +102,8 @@ const WorkoutList = () => {
       </ul>
      
     </div>
+    </div>
+    
   );
 };
 

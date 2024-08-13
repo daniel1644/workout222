@@ -3,6 +3,7 @@ import { Link, useHistory, useParams } from 'react-router-dom';
 import { getGoals, addGoal, updateGoal, deleteGoal, getGoal } from '../api';
 import './GoalList.css';
 import Navbar2 from './Navbar2';
+import Logout from './Logout';
 
 
 const GoalList = () => {
@@ -62,8 +63,11 @@ const GoalList = () => {
   if (loading) return <div>Loading...</div>;
 
   return (
-    <div className="goal-list-container">
+    <div>
       <Navbar2/>
+
+    <div className="goal-list-container">
+      <Logout />
       <h2 className="goal-list-header">Goal List</h2>
       <Link to="/goals/add">Add Goal</Link>
       
@@ -93,6 +97,8 @@ const GoalList = () => {
       </ul>
      
     </div>
+    </div>
+    
   );
 };
 

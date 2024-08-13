@@ -1,11 +1,13 @@
-.dashboard__container {
-  padding: 20px;
+.about-us-container {
+  padding: 5px;
+  background-color: #f9f9f9;
 }
 
 .dashboard__grid {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+  
 }
 
 .widget {

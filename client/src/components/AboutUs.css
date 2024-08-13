@@ -1,41 +1,82 @@
-/* AboutUs.css */
-.about-us {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 40px;
-    background-color: #f0f0f0;
-    border: 1px solid #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .about-us h1 {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  .about-us p {
-    font-size: 18px;
-    margin-bottom: 20px;
-  }
-  
-  .about-us p:last-child {
-    margin-bottom: 0;
-  }
-  
-  .image-gallery {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 20px;
-  }
-  
-  .image-gallery img {
-    width: 200px;
-    height: 150px;
-    margin: 10px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
+.about-us-container {
+  padding: 5px;
+  background-color: #f9f9f9;
+}
+
+.about-us-content {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-size: 36px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.about-div,
+.mission,
+.values,
+.vision {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.about-div img,
+.mission img,
+.values img {
+  width: 40%;
+  height: auto;
+  margin-right: 20px;
+  border-radius: 10px;
+}
+
+.description-about,
+.description-mission,
+.description-vision {
+  width: 60%;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.subtitle {
+  font-size: 28px;
+  margin-bottom: 15px;
+}
+
+.feature-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.feature-item {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.values-image {
+  margin-left: 20px;
+}
+
+.arrow-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.arrow-button {
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.arrow-button:hover {
+  background-color: #0056b3;
+}

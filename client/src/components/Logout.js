@@ -1,20 +1,21 @@
-// // logout.js
-// import axios from 'axios';
+import axios from 'axios';
+import { logoutUser } from '../api';
+import './logout.css'; // import the CSS file
 
-// const Logout = () => {
-//   const handleClick = async () => {
-//     try {
-//       const response = await axios.post('/logout');
-//       localStorage.removeItem('token');
-//       window.location.href = '/';
-//     } catch (error) {
-//       console.error(error);
-//     }
-//   };
+const Logout = () => {
+  const handleClick = async () => {
+    try {
+      await logoutUser(); // Use the logoutUser function
+      localStorage.removeItem('token');
+      window.location.href = '/';
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-//   return (
-//     <button onClick={handleClick}>Logout</button>
-//   );
-// };
+  return (
+    <button className="logout-button" onClick={handleClick}>Logout</button>
+  );
+};
 
-// export default Logout;
+export default Logout;
